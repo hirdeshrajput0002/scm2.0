@@ -8,16 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.scm.Entity.User;
 import com.scm.forms.UserForm;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
 import com.scm.services.UserService;
-
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
 
 @Controller
 public class PageController {
@@ -31,46 +28,48 @@ public class PageController {
        return "redirect:/home";
    }
 
-    @RequestMapping("/home")
+    @GetMapping("/home")
     public String home(Model model)
     {
-        System.out.println("this is home page handler");
+        //System.out.println("this is home page handler");
         //sending data to view
         model.addAttribute("name", "substring technologies");
         return "home";
     }
     //about rout
-    @RequestMapping("/about")
+    @GetMapping("/about")
     public String aboutPage(){
-        System.out.println("this is about controller");
-        return "about";
+        //System.out.println("this is about controller");
+        return new String("about");
     }
     //service rout
-    @RequestMapping("/services")
+    @GetMapping("/services")
     public String sarvicesPage(){
-        System.out.println("this is services page");
-        return "services";
+        //System.out.println("this is services page");
+        return new String("services");
     }
     //contact rout
     @GetMapping("/contact")
     public String contactPage(){
-        System.out.println("this is contact page");
-        return "contact";
+       // System.out.println("this is contact page");
+        return new String("contact");
     }
+    // this is login controller-viewPage
      //login rout
      @GetMapping("/login")
      public String Login(){
-         System.out.println("this is Login page");
-         return "login";
+        // System.out.println("this is Login page");
+         return new String("login");
      } 
+     // this is registration controller-viewPage
     //singup/register rout
     @GetMapping("/signup")
-    public String Signup( Model model){
+    public String Signup(Model model){
         UserForm userForm = new UserForm();
         //send default data
         model.addAttribute("userForm", userForm);
         //userForm.setName("hirdesh");
-        System.out.println("this is signup page");
+        //System.out.println("this is signup page");
         return "signup";
     }
     //processing register
@@ -79,7 +78,7 @@ public class PageController {
         //System.out.println("registration process");
         //fetch form data
            // create UserForm class
-           System.out.println(userForm);
+         //  System.out.println(userForm);
         //validate form data
         if (rBindingResult.hasErrors()) {
             return "signup";
@@ -104,7 +103,7 @@ public class PageController {
        // user.setEnabled(true);
         user.setProfilePic("");
         User saveUser = userService.saveUser(user);
-        System.out.println("user saved");
+       // System.out.println("user saved");
         //massage="Registration Successful"
 
         //add massage to signup
@@ -113,5 +112,4 @@ public class PageController {
         //redirect to signup/register page
         return "redirect:/signup";
     }
-
 }

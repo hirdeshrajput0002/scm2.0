@@ -5,12 +5,9 @@ import java.util.Collection;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.hibernate.engine.internal.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -53,7 +50,7 @@ public class User implements UserDetails {
     private boolean enabled=true;
     private boolean emailVerified=false;
     private boolean phoneVerified=false;
-    // self,google,facebook,github,twiter,linkdin
+    // self,google,facebook,github,twiter,linkedin
     @Enumerated(value=EnumType.STRING)
     private providers provider=providers.SELF;
     private String providerUserId;
